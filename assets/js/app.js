@@ -6,9 +6,10 @@ chatapp.factory('Data', function () {
     return { id:"1", name: "aung"};
 });
 
-chatapp.controller('MainCtrl', function ($scope, Data) {
+chatapp.controller('MainCtrl', ['$scope', '$rootScope', function ($scope, $rootScope, Data) {
     $scope.Data = Data;
     $scope.messages = [];
+    $scope.messageList = [];
     $scope.data = {
         name: null,
         message: null
@@ -38,14 +39,22 @@ chatapp.controller('MainCtrl', function ($scope, Data) {
             default: return;
         }
     });
-    
+
     io.socket.on('greeting', function(msg) {
         console.log("message from general room:"+ msg.body);
     });
 
-});
+    io.socket.on('private-message', function(msg) {
+        console.log("private message testing");
+        console.log("Message from: " + msg.from);
+        $scope.messageList[msg.fromuser].push({"name": msg.fromusername, "message": msg.message});
+        //$scope.messages = $scope.messageList(msg.fromuser);
+        //$scope.apply();
+    });
 
-chatapp.controller('UserListCtrl', function ($scope, Data) {
+}]);
+
+chatapp.controller('UserListCtrl', ['$scope', '$rootScope', function ($scope, $rootScope, Data) {
     console.log("UserList Controller Entered");
     $scope.users = [];
     $scope.Data = Data;
@@ -63,13 +72,13 @@ chatapp.controller('UserListCtrl', function ($scope, Data) {
             default: return;
         }
     });
-    
+
     $scope.chatWithUser = function(userid) {
-        alert(userid);
+        //alert(userid);
         $scope.Data.id = userid;
-        alert("changed");
+        //alert("changed");
     };
-});
+}]);
 
 chatapp.directive('focusOn', function () {
     return function (scope, elem, attr) {

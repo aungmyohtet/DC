@@ -24,6 +24,8 @@ module.exports = {
     printAllSockets() {
         for (var i = 0; i < socketList.length; i++) {
             console.log("socket user id is " + socketList[i].userId);
+            socketList[i].socket.emit("private-message", {"from": "aung", "message": "Hello"});
+            console.log("EmittedMessage");
         }
     }
 };
