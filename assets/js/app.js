@@ -2,12 +2,7 @@
 
 var chatapp = angular.module('t-chat', []);
 
-chatapp.factory('currentMessages', function () {
-    return [];
-});
-
-chatapp.controller('MainCtrl', ['$scope', function ($scope, currentMessages) {
-    $scope.currentMessages = currentMessages;
+chatapp.controller('MainCtrl', ['$scope', function ($scope) {
     $scope.messages = [];
     $scope.data = {
         name: null,
@@ -45,7 +40,7 @@ chatapp.controller('MainCtrl', ['$scope', function ($scope, currentMessages) {
 
 }]);
 
-chatapp.controller('UserListCtrl', ['$scope', function ($scope, currentMessages) {
+chatapp.controller('UserListCtrl', ['$scope', function ($scope) {
     console.log("UserList Controller Entered");
     $scope.users = [];
     io.socket.get('/user/subscribe', function (res) { });
@@ -64,7 +59,6 @@ chatapp.controller('UserListCtrl', ['$scope', function ($scope, currentMessages)
     });
     
     $scope.chatWithUser = function(userid) {
-        currentMessages.push(userid);
     };
 }]);
 
