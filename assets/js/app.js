@@ -2,7 +2,12 @@
 
 var chatapp = angular.module('t-chat', []);
 
-chatapp.controller('MainCtrl', ['$scope', function ($scope) {
+chatapp.factory('Data', function () {
+    return { id:"1", name: "aung"};
+});
+
+chatapp.controller('MainCtrl', function ($scope, Data) {
+    $scope.Data = Data;
     $scope.messages = [];
     $scope.data = {
         name: null,
@@ -38,11 +43,12 @@ chatapp.controller('MainCtrl', ['$scope', function ($scope) {
         console.log("message from general room:"+ msg.body);
     });
 
-}]);
+});
 
-chatapp.controller('UserListCtrl', ['$scope', function ($scope) {
+chatapp.controller('UserListCtrl', function ($scope, Data) {
     console.log("UserList Controller Entered");
     $scope.users = [];
+    $scope.Data = Data;
     io.socket.get('/user/subscribe', function (res) { });
     io.socket.on('user', function onServerSentEvent(user) {
         switch (user.verb) {
@@ -59,8 +65,11 @@ chatapp.controller('UserListCtrl', ['$scope', function ($scope) {
     });
     
     $scope.chatWithUser = function(userid) {
+        alert(userid);
+        $scope.Data.id = userid;
+        alert("changed");
     };
-}]);
+});
 
 chatapp.directive('focusOn', function () {
     return function (scope, elem, attr) {
