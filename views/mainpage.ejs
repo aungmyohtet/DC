@@ -87,11 +87,11 @@
             <ul id="user-list">
                 <% for(var i=0; i<User.users.length; i++) { 
                    if (User.users[i].id != req.session.user.id) { %>
-                <li data-id="<%=User.users[i].id %>" ng-click="chatWithUser(<%=User.users[i].id %>);">
+                <li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
                   <%= User.users[i].name %>
                </li>
              <%  }} %>
-                <li data-id="{{user.id}}" ng-repeat="user in users" ng-click="chatWithUser(user.id);">
+                <li data-id="{{user.id}}" ng-repeat="user in users" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
                     {{user.name}}
                 </li>
             </ul>
