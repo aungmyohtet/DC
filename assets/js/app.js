@@ -6,7 +6,8 @@ chatapp.factory('Data', function () {
     return { id:"1", name: "aung"};
 });
 
-chatapp.controller('MainCtrl', ['$scope', '$rootScope', function ($scope, $rootScope, Data) {
+chatapp.controller('MainCtrl',
+    function ($scope,$rootScope, Data) {
     $scope.Data = Data;
     $scope.messages = [];
     $scope.messageList = [];
@@ -47,14 +48,20 @@ chatapp.controller('MainCtrl', ['$scope', '$rootScope', function ($scope, $rootS
     io.socket.on('private-message', function(msg) {
         console.log("private message testing");
         console.log("Message from: " + msg.from);
-        $scope.messageList[msg.fromuser].push({"name": msg.fromusername, "message": msg.message});
+        $scope.messageList[0].push({"name": msg.fromusername, "message": msg.message});
         //$scope.messages = $scope.messageList(msg.fromuser);
         //$scope.apply();
     });
 
-}]);
+    $rootScope.$on("change-message", function() {
+        $scope.messages = [{"name": "new name", "message": "new message"}];
+        $scope.$apply();
+    });
 
-chatapp.controller('UserListCtrl', ['$scope', '$rootScope', function ($scope, $rootScope, Data) {
+});
+
+chatapp.controller('UserListCtrl',
+    function ($scope,$rootScope,Data) {
     console.log("UserList Controller Entered");
     $scope.users = [];
     $scope.Data = Data;
@@ -76,9 +83,10 @@ chatapp.controller('UserListCtrl', ['$scope', '$rootScope', function ($scope, $r
     $scope.chatWithUser = function(userid) {
         //alert(userid);
         $scope.Data.id = userid;
+        $rootScope.$emit("change-message", {});
         //alert("changed");
     };
-}]);
+});
 
 chatapp.directive('focusOn', function () {
     return function (scope, elem, attr) {
