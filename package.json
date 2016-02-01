@@ -7,6 +7,10 @@
     "websocket",
     "socket.io"
   ],
+  "engines": {
+      "node": "4.2.3",
+      "npm": "2.14.7"
+  },
   "dependencies": {
     "express": "*",
     "sails": "~0.10.5",
