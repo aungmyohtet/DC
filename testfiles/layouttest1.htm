@@ -1,0 +1,103 @@
+<!DOCTYPE html/>
+<html>
+
+<head>
+	<style>
+		#container {
+			position: relative;
+			height: 100%;
+			background: blue;
+		}
+		
+		body {
+			background: green;
+		}
+		
+		#sidebar {
+			float: left;
+			background: red;
+			height: 100%;
+			width: 15%;
+		}
+		
+		#main-container {
+			/*position: relative;*/
+			/*height: 80%;*/
+			/*height: 80%;*/
+			background: wheat;
+			height: 100%;
+		}
+		
+		#message-area {
+			height: 90%;
+			background: green;
+			overflow: scroll;
+		}
+		
+		#chat-box {
+			background: yellow;
+			height: 10%;
+		}
+		.message {
+			margin-left: 10px;
+			background: cadetblue;
+			vertical-align: bottom;
+		}
+		#chat-text {
+			display: block;
+			padding: 10px;
+			width: 80%;
+			height: 80%;
+			border: solid;
+			border-width: 1px;
+			border-color: deepskyblue;
+		}
+		
+		#submit-button {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="container">
+		<div id="sidebar">
+		</div>
+		<div id="main-container">
+			<div id="message-area">
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+				<div class="message">message 1</div>
+				<div class="message">message 2 <br/> message2-1</div>
+				<div></div>
+			
+			</div>
+			<div id="chat-box">
+				<form onsubmit="submit();">
+					<input type="text" id="chat-text"/>
+					<input type="submit" id="submit-button"/>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+function submit() {
+
+}
+</script>
+
+</html>
