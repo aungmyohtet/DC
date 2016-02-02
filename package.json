@@ -38,7 +38,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/aungmyohtet/ateam-chat"
+    "url": "git://github.com/aungmyohtet/aungmyohtet-chat"
   },
   "author": "aungmyohtet",
   "license": "Apache 2"
