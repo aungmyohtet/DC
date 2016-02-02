@@ -85,7 +85,8 @@
 	<div id="container" ng-app="t-chat">
 		<div id="sidebar" ng-controller="UserListCtrl">
             <ul id="user-list">
-                <% for(var i=0; i<User.users.length; i++) {
+                <li data-id="-1" class="chatting" onclick="selectUser(this)" ng-click="chatWithUser(-1);">Boradcast Room</li>
+								<% for(var i=0; i<User.users.length; i++) {
                    if (User.users[i].id != req.session.user.id) { %>
                 <li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
                   <%= User.users[i].name %>
@@ -99,7 +100,6 @@
 
 		<div id="main-container" ng-controller="MainCtrl">
 			<div id="message-area">
-                User name is: {{Data.id}}
 				<div class="panel panel-default" ng-repeat="n in messages">
 					<div class="panel-heading">
 						<h4 class="panel-title">{{n.name}}</h4>
