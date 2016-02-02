@@ -42,8 +42,9 @@ chatapp.controller('MainCtrl',
             switch (msg.verb) {
 
                 case 'created':
-                    $scope.messages.push(msg.data);
+                    //$scope.messages.push(msg.data);
                     $scope.generalMessages.push(msg.data);
+                    $scope.messages = $scope.generalMessages;
                     //$scope.data.message = null;
                     $scope.$apply();
                     var messagearea = document.getElementById("message-area");
@@ -76,7 +77,7 @@ chatapp.controller('MainCtrl',
         });
 
         $rootScope.$on("change-message", function () {
-            if ($scope.Data.id != 1) {
+            if ($scope.Data.id != -1) {
               $scope.messages = $scope.messageList[$scope.Data.id];
             } else {
               $scope.messages = $scope.generalMessages;
