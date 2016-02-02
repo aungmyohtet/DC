@@ -55,20 +55,20 @@
 		#submit-button {
 			display: none;
 		}
-        
+
         #user-list {
             list-style: none;
             align-content: flex-start;
             padding-left: 0pt;
         }
-        
+
         ul li {
             display: block;
             width: 100%;
             background: olivedrab;
             margin-top: 5px;
         }
-        
+
         #user-list li:hover {
             background: dimgrey
         }
@@ -85,7 +85,7 @@
 	<div id="container" ng-app="t-chat">
 		<div id="sidebar" ng-controller="UserListCtrl">
             <ul id="user-list">
-                <% for(var i=0; i<User.users.length; i++) { 
+                <% for(var i=0; i<User.users.length; i++) {
                    if (User.users[i].id != req.session.user.id) { %>
                 <li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
                   <%= User.users[i].name %>
@@ -96,7 +96,7 @@
                 </li>
             </ul>
 		</div>
-        
+
 		<div id="main-container" ng-controller="MainCtrl">
 			<div id="message-area">
                 User name is: {{Data.id}}
@@ -131,7 +131,7 @@
       event.preventDefault();
       //send();
   };
-  
+
   function selectUser(link) {
      var previousChattingUsers = document.getElementsByClassName('chatting');
      for (var i=0; i < previousChattingUsers.length; i++) {
@@ -139,7 +139,7 @@
      }
      var userid = link.getAttribute("data-id");
      link.setAttribute('class', 'chatting');
-     alert(userid);
+     console.log(userid);
   }
 </script>
 

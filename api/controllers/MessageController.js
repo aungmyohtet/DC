@@ -31,6 +31,8 @@ module.exports = {
           message: req.param('message')
       };
       var targetSocket = SocketService.getSocketByUserId(req.param('toId'));
+      var fromSocket = SocketService.getSocketByUserId(data.fromId);
       targetSocket.emit("private-message", {"fromId": data.fromId, body : {"fromName": data.fromName, "message": data.message}});
+      fromSocket.emit("private-message", {"fromId": data.toId, body : {"fromName": data.fromName, "message": data.message}});
     }
 };
