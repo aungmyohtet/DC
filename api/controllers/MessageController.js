@@ -21,6 +21,16 @@ module.exports = {
         req.socket.join("general");
         console.log("rooms: "+sails.sockets.rooms());
         req.socket.broadcast.to('general').emit('greeting', {body: 'Hello'});
+    },
+
+    privateChat: function(req, res) {
+      var data = {
+          toId: req.param('toId'),
+          fromId: req.session.user.id,
+          fromName: req.session.user.name,
+          message: req.param('message')
+      };
+      var targetSocket = SocketService.getSocketByUserId(req.param('toId'));
+      targetSocket.emit("private-message", {"fromId": data.fromId, body : {"fromName": data.fromName, "message": data.message}});
     }
 };
-

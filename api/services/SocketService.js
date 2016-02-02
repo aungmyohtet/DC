@@ -16,7 +16,7 @@ module.exports = {
     getSocketByUserId: function (userId) {
         for (var i = 0; i < socketList.length; i++) {
             if (socketList[i].userId == userId) {
-                return socketList[i];
+                return socketList[i].socket;
             }
         }
     },
