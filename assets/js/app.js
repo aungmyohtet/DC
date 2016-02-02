@@ -68,8 +68,8 @@ chatapp.controller('MainCtrl',
                $scope.messageList[msg.fromId].push({ "name": msg.body.fromName, "message": msg.body.message });
             }
 
-            $scope.messages = $scope.messageList(msg.fromId);
-            $scope.apply();
+            $scope.messages = $scope.messageList[msg.fromId];
+            $scope.$apply();
         });
 
         $rootScope.$on("change-message", function () {
