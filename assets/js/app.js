@@ -10,6 +10,7 @@ chatapp.controller('MainCtrl',
     function ($scope, $rootScope, Data) {
         $scope.Data = Data;
         $scope.messages = [];
+        $scope.generalMessages = [];
         $scope.messageList = [];
         $scope.data = {
             name: null,
@@ -42,6 +43,7 @@ chatapp.controller('MainCtrl',
 
                 case 'created':
                     $scope.messages.push(msg.data);
+                    $scope.generalMessages.push(msg.data);
                     //$scope.data.message = null;
                     $scope.$apply();
                     var messagearea = document.getElementById("message-area");
@@ -74,7 +76,12 @@ chatapp.controller('MainCtrl',
         });
 
         $rootScope.$on("change-message", function () {
-            $scope.messages = $scope.messageList[$scope.Data.id];
+            if ($scope.Data.id != 1) {
+              $scope.messages = $scope.messageList[$scope.Data.id];
+            } else {
+              $scope.messages = $scope.generalMessages;
+            }
+
             if (!$scope.$$phase) {
                 $scope.$apply();
             }
