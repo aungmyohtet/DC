@@ -1,6 +1,6 @@
 {
   "name": "t-chat",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Learners' project of simple chat application",
   "keywords": [
     "sails",
