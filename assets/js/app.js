@@ -58,16 +58,22 @@ chatapp.controller('MainCtrl',
         });
 
         io.socket.on('private-message', function (msg) {
-            alert("private message received!");
-            console.log("private message testing");
-            console.log("Message from: " + msg.from);
-            $scope.messageList.push({ "name": msg.fromusername, "message": msg.message });
-            //$scope.messages = $scope.messageList(msg.fromuser);
-            //$scope.apply();
+            alert("private message received from " + msg.fromId);
+            //console.log("private message testing");
+            //console.log("Message from: " + msg.from);
+            if ($scope.messageList[msg.fromId]) {
+              $scope.messageList[msg.fromId].push({ "name": msg.body.fromName, "message": msg.body.message });
+            } else {
+               $scope.messageList[msg.fromId] = [];
+               $scope.messageList[msg.fromId].push({ "name": msg.body.fromName, "message": msg.body.message });
+            }
+
+            $scope.messages = $scope.messageList(msg.fromId);
+            $scope.apply();
         });
 
         $rootScope.$on("change-message", function () {
-            $scope.messages = [{ "name": "new name", "message": "new message" }];
+            $scope.messages = $scope.messageList[$scope.Data.id];
             if (!$scope.$$phase) {
                 $scope.$apply();
             }
