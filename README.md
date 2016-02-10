@@ -2,6 +2,7 @@ To show how to build chat applications with nodejs, sailsjs and websockets
 A simple chat application
 
 Required steps
+
 1. Install Nodejs, Sailsjs and NPM
 
 2. Clone this repository
