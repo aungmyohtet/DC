@@ -2,13 +2,13 @@
 
 var chatapp = angular.module('t-chat', []);
 
-chatapp.factory('Data', function () {
+chatapp.factory('UserModel', function () {
     return { id: "-1", name: "aung" };
 });
 
 chatapp.controller('MainCtrl',
-    function ($scope, $rootScope, Data) {
-        $scope.Data = Data;
+    function ($scope, $rootScope, UserModel) {
+        $scope.UserModel = UserModel;
         $scope.messages = [];
         $scope.generalMessages = [];
         $scope.messageList = [];
@@ -17,17 +17,17 @@ chatapp.controller('MainCtrl',
             message: null
         };
         var privateMessage = {
-          toId: $scope.Data.id,
+          toId: $scope.UserModel.id,
           name: null,
           message: $scope.data.message
         };
 
         $scope.send = function () {
-            if ($scope.Data.id == -1) {
+            if ($scope.UserModel.id == -1) {
               io.socket.post('/message/chat', $scope.data, function (res) { });
             }
             else {
-              io.socket.post('/message/privateChat', {toId: $scope.Data.id,
+              io.socket.post('/message/privateChat', {toId: $scope.UserModel.id,
                 name: null,
                 message: $scope.data.message}, function(res) { });
             }
@@ -70,15 +70,15 @@ chatapp.controller('MainCtrl',
                $scope.messageList[msg.fromId] = [];
                $scope.messageList[msg.fromId].push({ "name": msg.body.fromName, "message": msg.body.message });
             }
-            if ($scope.Data.id == msg.fromId) {
+            if ($scope.UserModel.id == msg.fromId) {
               $scope.messages = $scope.messageList[msg.fromId];
               $scope.$apply();
             }
         });
 
         $rootScope.$on("change-message", function () {
-            if ($scope.Data.id != -1) {
-              $scope.messages = $scope.messageList[$scope.Data.id];
+            if ($scope.UserModel.id != -1) {
+              $scope.messages = $scope.messageList[$scope.UserModel.id];
             } else {
               $scope.messages = $scope.generalMessages;
             }
@@ -91,10 +91,10 @@ chatapp.controller('MainCtrl',
     });
 
 chatapp.controller('UserListCtrl',
-    function ($scope, $rootScope, Data) {
+    function ($scope, $rootScope, UserModel) {
         console.log("UserList Controller Entered");
         $scope.users = [];
-        $scope.Data = Data;
+        $scope.UserModel = UserModel;
         io.socket.get('/user/subscribe', function (res) { });
         io.socket.on('user', function onServerSentEvent(user) {
             switch (user.verb) {
@@ -112,7 +112,7 @@ chatapp.controller('UserListCtrl',
 
         $scope.chatWithUser = function (userid) {
             //alert(userid);
-            $scope.Data.id = userid;
+            $scope.UserModel.id = userid;
             $rootScope.$emit("change-message", {});
             //alert("changed");
         };
