@@ -44,7 +44,9 @@ chatapp.controller('MainCtrl',
                 case 'created':
                     //$scope.messages.push(msg.data);
                     $scope.generalMessages.push(msg.data);
-                    $scope.messages = $scope.generalMessages;
+                    if ($scope.UserModel.id == -1) {
+                        $scope.messages = $scope.generalMessages;
+                    }
                     //$scope.data.message = null;
                     $scope.$apply();
                     var messagearea = document.getElementById("message-area");
