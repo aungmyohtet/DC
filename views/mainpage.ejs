@@ -6,93 +6,93 @@
 	<link rel="stylesheet" href="/styles/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/styles/importer.css">
 	<style>
-		#container {
-			position: relative;
-			height: 100%;
-		}
+	#container {
+		position: relative;
+		height: 100%;
+	}
 
-		body {
-            /*background: #005555;*/
-		}
+	body {
+		/*background: #005555;*/
+	}
 
-		#sidebar {
-			float: left;
-			background: #bebebe;
-			height: 100%;
-			width: 15%;
-			border: solid 1px;
-		}
+	#sidebar {
+		float: left;
+		background: #bebebe;
+		height: 100%;
+		width: 15%;
+		border: solid 1px;
+	}
 
-		#main-container {
-			/*position: relative;*/
-			/*height: 80%;*/
-			/*height: 80%;*/
-			/*background: wheat;*/
-			height: 100%;
-		}
+	#main-container {
+		/*position: relative;*/
+		/*height: 80%;*/
+		/*height: 80%;*/
+		/*background: wheat;*/
+		height: 100%;
+	}
 
-		#message-area {
-			height: 90%;
-			/*background: ghostwhite;*/
-			overflow: scroll;
-		}
+	#message-area {
+		height: 90%;
+		/*background: ghostwhite;*/
+		overflow: scroll;
+	}
 
-		#chat-box {
-			/*background: yellow;*/
-			height: 10%;
-		}
-		.message {
-			margin-left: 10px;
-			/*background: cadetblue;*/
-			vertical-align: bottom;
-		}
-		#chat-text {
-			display: block;
-			padding: 20px;
-			width: 80%;
-			height: 80%;
-			border: solid;
-			border-width: 1px;
-			border-color: deepskyblue;
-		}
+	#chat-box {
+		/*background: yellow;*/
+		height: 10%;
+	}
+	.message {
+		margin-left: 10px;
+		/*background: cadetblue;*/
+		vertical-align: bottom;
+	}
+	#chat-text {
+		display: block;
+		padding: 20px;
+		width: 80%;
+		height: 80%;
+		border: solid;
+		border-width: 1px;
+		border-color: deepskyblue;
+	}
 
-		#submit-button {
-			display: none;
-		}
+	#submit-button {
+		display: none;
+	}
 
-        #user-list {
-            list-style: none;
-            align-content: flex-start;
-            padding-left: 0pt;
-        }
+	#user-list {
+		list-style: none;
+		align-content: flex-start;
+		padding-left: 0pt;
+	}
 
-        ul li {
-            display: block;
-            width: 100%;
-            background: #fffafa;
-            margin-top: 5px;
-						padding: 10px;
-        }
+	ul li {
+		display: block;
+		width: 100%;
+		background: #fffafa;
+		margin-top: 5px;
+		padding: 10px;
+	}
 
-        #user-list li:hover {
-            background: #b0e0e6;
-        }
-        #user-list li {
-            cursor: pointer;
-        }
-        .chatting {
-            background: #87ceeb;
-        }
+	#user-list li:hover {
+		background: #b0e0e6;
+	}
+	#user-list li {
+		cursor: pointer;
+	}
+	.chatting {
+		background: #87ceeb;
+	}
 
-				.chat-message-content {
-           margin-right: 20px;
-					 background: #afeeee;
-				}
+	.chat-message-content {
+		margin-right: 20px;
+		background: #afeeee;
+	}
 
-				.username-in-chat-message {
-					margin-left: 10px;
-					font-style: oblique;
-				}
+	.username-in-chat-message {
+		margin-left: 10px;
+		font-style: oblique;
+	}
 
 	</style>
 </head>
@@ -100,63 +100,63 @@
 <body>
 	<div id="container" ng-app="t-chat">
 		<div id="sidebar" ng-controller="UserListCtrl">
-            <ul id="user-list">
-                <li data-id="-1" class="chatting" onclick="selectUser(this)" ng-click="chatWithUser(-1);">Boradcast Room</li>
-								<% for(var i=0; i<User.users.length; i++) {
-                   if (User.users[i].id != req.session.user.id) { %>
-                <li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
-                  <%= User.users[i].name %>
-               </li>
-             <%  }} %>
-                <li data-id="{{user.id}}" ng-repeat="user in users" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
-                    {{user.name}}
-                </li>
-            </ul>
-		</div>
-
-		<div id="main-container" ng-controller="MainCtrl">
-			<div id="message-area">
-				<div ng-repeat="n in messages">
-					<div class="username-in-chat-message">
-						<h5>{{n.name}}</h5>
-					</div>
-					<div class="panel-body chat-message-content">
-						{{n.message}}
-					</div>
+			<ul id="user-list">
+				<li data-id="-1" class="chatting" onclick="selectUser(this)" ng-click="chatWithUser(-1);">Boradcast Room</li>
+				<% for(var i=0; i<User.users.length; i++) {
+					if (User.users[i].id != req.session.user.id) { %>
+						<li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
+							<%= User.users[i].name %>
+						</li>
+						<%  }} %>
+						<li data-id="{{user.id}}" ng-repeat="user in users" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
+							{{user.name}}
+						</li>
+					</ul>
 				</div>
 
+				<div id="main-container" ng-controller="MainCtrl">
+					<div id="message-area">
+						<div ng-repeat="n in messages">
+							<div class="username-in-chat-message">
+								<h5>{{n.name}}</h5>
+							</div>
+							<div class="panel-body chat-message-content">
+								{{n.message}}
+							</div>
+						</div>
+
+					</div>
+					<div id="chat-box">
+						<form  id="message-form" ng-submit="send();data.message=null;">
+							<input type="text" id="chat-text" ng-model="data.message" focus-on="msgSend" placeholder="Message"/>
+							<input type="submit" id="submit-button"/>
+						</form>
+					</div>
+				</div>
 			</div>
-			<div id="chat-box">
-				<form  id="message-form" ng-submit="send();data.message=null;">
-					<input type="text" id="chat-text" ng-model="data.message" focus-on="msgSend" placeholder="Message"/>
-					<input type="submit" id="submit-button"/>
-				</form>
-			</div>
-		</div>
-	</div>
 
-	<script src="/js/dependencies/angular/angular.min.js"></script>
-	<script src="/js/dependencies/jquery/jquery.min.js"></script>
-	<script src="/js/dependencies/sails.io.js"></script>
-	<script src="/js/app.js"></script>
+			<script src="/js/dependencies/angular/angular.min.js"></script>
+			<script src="/js/dependencies/jquery/jquery.min.js"></script>
+			<script src="/js/dependencies/sails.io.js"></script>
+			<script src="/js/app.js"></script>
 
-</body>
-<script>
-  var messageForm = document.getElementById("message-form");
-  messageForm.onsubmit = function(event) {
-      event.preventDefault();
-      //send();
-  };
+		</body>
+		<script>
+		var messageForm = document.getElementById("message-form");
+		messageForm.onsubmit = function(event) {
+			event.preventDefault();
+			//send();
+		};
 
-  function selectUser(link) {
-     var previousChattingUsers = document.getElementsByClassName('chatting');
-     for (var i=0; i < previousChattingUsers.length; i++) {
-         previousChattingUsers[i].removeAttribute("class");
-     }
-     var userid = link.getAttribute("data-id");
-     link.setAttribute('class', 'chatting');
-     console.log(userid);
-  }
-</script>
+		function selectUser(link) {
+			var previousChattingUsers = document.getElementsByClassName('chatting');
+			for (var i=0; i < previousChattingUsers.length; i++) {
+				previousChattingUsers[i].removeAttribute("class");
+			}
+			var userid = link.getAttribute("data-id");
+			link.setAttribute('class', 'chatting');
+			console.log(userid);
+		}
+		</script>
 
-</html>
+		</html>
