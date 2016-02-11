@@ -17,9 +17,10 @@
 
 		#sidebar {
 			float: left;
-			background: #668080;
+			background: #bebebe;
 			height: 100%;
 			width: 15%;
+			border: solid 1px;
 		}
 
 		#main-container {
@@ -68,8 +69,9 @@
         ul li {
             display: block;
             width: 100%;
-            background: olivedrab;
+            background: #fffafa;
             margin-top: 5px;
+						padding: 10px;
         }
 
         #user-list li:hover {
@@ -79,8 +81,19 @@
             cursor: pointer;
         }
         .chatting {
-            background: chocolate;
+            background: #87ceeb;
         }
+
+				.chat-message-content {
+           margin-right: 20px;
+					 background: #afeeee;
+				}
+
+				.username-in-chat-message {
+					margin-left: 10px;
+					font-style: oblique;
+				}
+
 	</style>
 </head>
 
@@ -103,11 +116,11 @@
 
 		<div id="main-container" ng-controller="MainCtrl">
 			<div id="message-area">
-				<div class="panel panel-default" ng-repeat="n in messages">
-					<div class="panel-heading">
-						<h4 class="panel-title">{{n.name}}</h4>
+				<div ng-repeat="n in messages">
+					<div class="username-in-chat-message">
+						<h5>{{n.name}}</h5>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body chat-message-content">
 						{{n.message}}
 					</div>
 				</div>
