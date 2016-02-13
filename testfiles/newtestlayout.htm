@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            border-width: 0px;
+        }
+        
+       /* #main-container {
+            margin: 0px;
+            padding: 0px;
+            border-width: 0px;
+            width: 100vw;
+            height: 100vh;
+            background: #88aeae;
+        }*/
+        
+        #top-nav-bar {
+            position: fixed;
+            top: 0px;
+            left: 200px;
+            right: 0px;
+            height: 30px;
+            background: #88aeaf;
+        }
+        
+        #left-panel {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            bottom: 0px;
+            width: 200px;
+            background: #55afaf;
+            /*height: 100vh;*/
+        }
+        
+        #right-panel {
+            position: fixed;
+            left: 200px;
+            top: 30px;
+            right: 0px;
+            bottom: 0px;
+            background: #44efef;
+        }
+        #message-container {
+            overflow-y: scroll;
+            background: #449898;
+            position: absolute;
+            bottom: 80px;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+        }
+        #chat-text-container {
+            position: absolute;
+            bottom: 0px;
+            background: #338fad;
+            height: 80px;
+            left: 0px;
+            right: 0px;
+        }
+        
+        .message {
+            display: table-row;
+        }
+        
+        #chat-text-textarea {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            resize: none;
+            line-height: 10px;
+            height: 30px;
+            border-color: darkgreen;
+            border-width: 1px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="top-nav-bar">
+    </div>
+    <div id="left-panel">
+        <div id="user-list-container">
+        </div>
+    </div>
+    <div id="right-panel">
+        <div id="message-container">
+           
+            <div class="message">
+                message2
+            </div>
+            <div class="message">
+                message2
+            </div>
+        </div>
+        
+        <div id="chat-text-container">
+            <textarea id="chat-text-textarea">
+            </textarea>
+        </div>
+    </div>
+    
+</body>
+
+</html>
