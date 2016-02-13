@@ -64,24 +64,21 @@
             right: 0px;
         }
         
-        .valign {
+        .message-list {
             display: table;
             width: 100%;
             height: 100%;
         }
         
-        .valign > div {
+        .message-list > div {
             display: table-cell;
             width: 100%;
             height: 100%;
         }
         
-        .valign.bottom > div {
+        .message-list.bottom > div {
             vertical-align: bottom;
-        }
-        
-        .message {
-            display: table-row;
+            padding-left: 10px;
         }
         
         #chat-text-textarea {
@@ -108,13 +105,11 @@
     </div>
     <div id="right-panel">
         <div id="message-container">
-            <div class="valign bottom">
+            <div class="message-list bottom">
                 <div>
-
                     <div>my bottom aligned div 1</div>
                     <div>my bottom aligned div 2</div>
                     <div>my bottom aligned div 3</div>
-
                 </div>
             </div>
 
