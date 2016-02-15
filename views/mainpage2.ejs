@@ -108,7 +108,7 @@
     padding-left: 0px;
     }
 
-  #user-list-container > .message-user-list a {
+  #user-list-container > .message-user-list li {
     display: block;
     padding: 5px;
     height: 40px; /*Keep height same as img thumbnail height*/
@@ -122,9 +122,10 @@
     -ms-transition: all ease .2s;
     -o-transition: all ease .2s;
     transition: all ease .2s;
+    cursor: pointer;
   }
 
-  #user-list-container > .message-user-list a:hover {
+  #user-list-container > .message-user-list li:hover {
     background: #add8e6;
 
     -webkit-transition: all ease .2s;
@@ -134,7 +135,7 @@
     transition: all ease .2s;
   }
 
-  #user-list-container > .message-user-list a .user-img {
+  #user-list-container > .message-user-list li .user-img {
     display: block;
     float: left;
     height: 40px;
@@ -143,11 +144,11 @@
     background: #006400;
   }
 
-  #user-list-container > .message-user-list a .user-title {
+  #user-list-container > .message-user-list li .user-title {
     margin-left: 5px;
   }
 
-  #user-list-container > .message-user-list a .user-desc {
+  #user-list-container > .message-user-list li .user-desc {
     padding-left: 5px;
     padding-top: 5px;
     font-size: 12px;
@@ -157,18 +158,18 @@
     text-overflow: ellipsis;
   }
 
-  #user-list-container > .message-user-list a.active {
+  #user-list-container > .message-user-list li.active {
     /*background: #BFBFBF;*/
     background: #87ceeb;
   }
 
-  #user-list-container > .message-user-list a.highlight {
+  #user-list-container > .message-user-list li.highlight {
     /*background: #90B2CC;*/
     background: #add8e6;
   }
 
-  #user-list-container > .message-user-list a.highlight .user-title,
-  #user-list-container > .message-user-list a.highlight .user-desc {
+  #user-list-container > .message-user-list li.highlight .user-title,
+  #user-list-container > .message-user-list li.highlight .user-desc {
     font-weight: bold;
   }
 
@@ -232,27 +233,21 @@
             <input type="text" class="search-text" placeholder="search"/>
           </li>
 
-          <li>
-            <a href="" data-id="-1" class="active" onclick="selectUser(this)" ng-click="chatWithUser(-1);">
+          <li data-id="-1" class="active" onclick="selectUser(this)" ng-click="chatWithUser(-1);">
               <span class="user-img"></span>
               <span class="user-title">BroadCast Room</span>
-            </a>
           </li>
           <% for(var i=0; i<User.users.length; i++) {
   					if (User.users[i].id != req.session.user.id) { %>
-  						<li>
-              <a href="" data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
+  						<li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
                 <span class="user-img"></span>
                 <span class="user-title"><%= User.users[i].name %></span>
-              </a>
   						</li>
   						<%  }} %>
 
-              <li ng-repeat="user in users" >
-              <a href="" data-id="{{user.id}}" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
+              <li ng-repeat="user in users" data-id="{{user.id}}" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
                 <span class="user-img"></span>
-                  <span class="user-title">{{user.name}}</san>
-              </a>
+                  <span class="user-title">{{user.name}}</span>
   						</li>
 
         </ul>
