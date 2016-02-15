@@ -1,0 +1,303 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <!--<link rel="stylesheet" href="/styles/bootstrap/css/bootstrap-theme.min.css">
+  	<link rel="stylesheet" href="/styles/bootstrap/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="/styles/importer.css"> -->
+  <style>
+  body {
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+  }
+
+  #top-nav-bar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 30px;
+    background: #88aeaf;
+  }
+
+  #left-panel {
+    position: fixed;
+    top: 30px;
+    left: 0px;
+    bottom: 0px;
+    width: 250px;
+    /*background: #effafa;*/
+    /*border-right: 1px solid rgba(20, 172, 194, 0.6);*/
+    border-right: 1px solid #aaeeef;
+    /*height: 100vh;*/
+  }
+
+  #right-panel {
+    position: fixed;
+    left: 250px;
+    top: 30px;
+    right: 0px;
+    bottom: 0px;
+    /*background: #44efef;*/
+  }
+
+  #message-container {
+    overflow-y: scroll;
+    /*background: #449898;*/
+    position: absolute;
+    bottom: 80px;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+  }
+
+  #chat-text-container {
+    position: absolute;
+    bottom: 0px;
+    /*background: #338fad;*/
+    height: 80px;
+    left: 0px;
+    right: 0px;
+  }
+
+  .message-list {
+    display: table;
+    width: 100%;
+    height: 100%;
+  }
+
+  .message-list > div {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+  }
+
+  .message-list.bottom > div {
+    vertical-align: bottom;
+    padding-left: 10px;
+  }
+
+  #chat-text-textarea {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    resize: none;
+    line-height: 10px;
+    height: 30px;
+    background: #f6f6f6;
+    border: 1px solid #838b83;
+    font: 1em Tahoma, cursive;
+  }
+
+  #chat-text-textarea:focus {
+    background: #FFF;
+  }
+
+  #user-list-container > .message-user-list {
+    list-style-type: none;
+    /*float: left;
+    clear: left;*/
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: 0px;
+    align-content: flex-start;
+    padding-left: 0px;
+    }
+
+  #user-list-container > .message-user-list a {
+    display: block;
+    padding: 5px;
+    height: 40px; /*Keep height same as img thumbnail height*/
+    width: 100%;
+    text-decoration: none;
+
+    color: #313131;
+
+    -webkit-transition: all ease .2s;
+    -moz-transition: all ease .2s;
+    -ms-transition: all ease .2s;
+    -o-transition: all ease .2s;
+    transition: all ease .2s;
+  }
+
+  #user-list-container > .message-user-list a:hover {
+    background: #add8e6;
+
+    -webkit-transition: all ease .2s;
+    -moz-transition: all ease .2s;
+    -ms-transition: all ease .2s;
+    -o-transition: all ease .2s;
+    transition: all ease .2s;
+  }
+
+  #user-list-container > .message-user-list a .user-img {
+    display: block;
+    float: left;
+    height: 40px;
+    width: 40px;
+    /*background: #6A8BBA;*/
+    background: #006400;
+  }
+
+  #user-list-container > .message-user-list a .user-title {
+    margin-left: 5px;
+  }
+
+  #user-list-container > .message-user-list a .user-desc {
+    padding-left: 5px;
+    padding-top: 5px;
+    font-size: 12px;
+    color: #5A5A5A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #user-list-container > .message-user-list a.active {
+    /*background: #BFBFBF;*/
+    background: #87ceeb;
+  }
+
+  #user-list-container > .message-user-list a.highlight {
+    /*background: #90B2CC;*/
+    background: #add8e6;
+  }
+
+  #user-list-container > .message-user-list a.highlight .user-title,
+  #user-list-container > .message-user-list a.highlight .user-desc {
+    font-weight: bold;
+  }
+
+  .message-other {
+    /*position: relative;
+    left: 0px;
+    background: green;
+    margin-bottom: 10px;
+    width: 100%;*/
+    padding-left: 0px;
+    padding-right: 100px;
+    margin-bottom: 10px;
+  }
+
+  .message-my {
+    /*position: relative;
+    left: 60px;
+    background: red;
+    margin-bottom: 10px;
+    width: 100%;*/
+    padding-left: 50px;
+    padding-right: 100px;
+    margin-bottom: 10px;
+  }
+
+  .message-body-other {
+    background: #3cb371;
+    word-wrap: break-word;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+  .message-body-my {
+    background: #8fbc8f;
+    word-wrap: break-word;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .search-text {
+    width:100%;
+    height:1.8em;
+    margin-bottom:20px;
+    padding-left: 10px;
+  }
+
+  #submit-button {
+    display: none;
+  }
+
+  </style>
+  </head>
+
+  <body ng-app="t-chat">
+
+    <div id="top-nav-bar">
+    </div>
+    <div id="left-panel">
+      <div id="user-list-container" ng-controller="UserListCtrl">
+        <ul class="message-user-list">
+          <li>
+            <input type="text" class="search-text" placeholder="search"/>
+          </li>
+
+          <li>
+            <a href="" data-id="-1" class="active" onclick="selectUser(this)" ng-click="chatWithUser(-1);">
+              <span class="user-img"></span>
+              <span class="user-title">BroadCast Room</span>
+            </a>
+          </li>
+          <% for(var i=0; i<User.users.length; i++) {
+  					if (User.users[i].id != req.session.user.id) { %>
+  						<li>
+              <a href="" data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
+                <span class="user-img"></span>
+                <span class="user-title"><%= User.users[i].name %></span>
+              </a>
+  						</li>
+  						<%  }} %>
+
+              <li>
+              <a href="" data-id="{{user.id}}" ng-repeat="user in users" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
+                <span class="user-img"></span>
+                  <span class="user-title">{{user.name}}</san>
+              </a>
+  						</li>
+
+        </ul>
+      </div>
+    </div>
+    <div id="right-panel" ng-controller="MainCtrl">
+      <div id="message-container">
+        <div class="message-list bottom">
+          <div id="message-area">
+            <div class="message-other"  ng-repeat="msg in messages">
+              <span class="message-user-name">{{msg.name}}</span><br/>
+              <span class="message-body-other">{{msg.message}}</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="chat-text-container">
+        <form  id="message-form" ng-submit="send();data.message=null;">
+        <input type="text" autocomplete="off" id="chat-text-textarea" ng-model="data.message" focus-on="msgSend">
+      </input>
+      <input type="submit" id="submit-button"/>
+      </form>
+    </div>
+  </div>
+  <script src="/js/dependencies/angular/angular.min.js"></script>
+  <script src="/js/dependencies/jquery/jquery.min.js"></script>
+  <script src="/js/dependencies/sails.io.js"></script>
+  <script src="/js/app.js"></script>
+  </body>
+  <script>
+  var messageForm = document.getElementById("message-form");
+  messageForm.onsubmit = function(event) {
+    event.preventDefault();
+    //send();
+  };
+
+  function selectUser(link) {
+    var previousChattingUsers = document.getElementsByClassName('active');
+    for (var i=0; i < previousChattingUsers.length; i++) {
+      previousChattingUsers[i].removeAttribute("class");
+    }
+    var userid = link.getAttribute("data-id");
+    link.setAttribute('class', 'active');
+    console.log(userid);
+  }
+  </script>
+  </html>

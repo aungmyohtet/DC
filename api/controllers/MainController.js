@@ -9,7 +9,7 @@ module.exports = {
     welcome: function (req, res) {
         if (req.session.username) {
             res.locals.layout = null;
-            res.view('mainpage');
+            res.view('mainpage2');
         } else {
             res.view('welcome');
         }
@@ -30,9 +30,9 @@ module.exports = {
             req.session.user = user;
             console.log("User is " + user.name);
             console.log("User id is "+ user.id);
-            res.view('mainpage');
+            res.view('mainpage2');
         });
-        
+
     },
 
     getRoomsList: function (req, res) {
@@ -44,4 +44,3 @@ module.exports = {
     }
 
 };
-
