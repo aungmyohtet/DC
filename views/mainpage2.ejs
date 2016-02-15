@@ -247,8 +247,8 @@
   						</li>
   						<%  }} %>
 
-              <li>
-              <a href="" data-id="{{user.id}}" ng-repeat="user in users" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
+              <li ng-repeat="user in users" >
+              <a href="" data-id="{{user.id}}" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
                 <span class="user-img"></span>
                   <span class="user-title">{{user.name}}</san>
               </a>
