@@ -49,7 +49,7 @@ chatapp.controller('MainCtrl',
                     }
                     //$scope.data.message = null;
                     $scope.$apply();
-                    var messagearea = document.getElementById("message-area");
+                    var messagearea = document.getElementById("message-container");
                     messagearea.scrollTop = messagearea.scrollHeight;
                     console.log("message area scrolling " + messagearea);
                     break;
@@ -76,7 +76,7 @@ chatapp.controller('MainCtrl',
               $scope.messages = $scope.messageList[msg.fromId];
               $scope.$apply();
             }
-            var messagearea = document.getElementById("message-area");
+            var messagearea = document.getElementById("message-container");
             messagearea.scrollTop = messagearea.scrollHeight;
             console.log("message area scrolling " + messagearea);
         });
