@@ -76,6 +76,9 @@ chatapp.controller('MainCtrl',
               $scope.messages = $scope.messageList[msg.fromId];
               $scope.$apply();
             }
+            var messagearea = document.getElementById("message-area");
+            messagearea.scrollTop = messagearea.scrollHeight;
+            console.log("message area scrolling " + messagearea);
         });
 
         $rootScope.$on("change-message", function () {
