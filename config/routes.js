@@ -30,10 +30,12 @@ module.exports.routes = {
   'get /': 'MainController.welcome'
   ,
 
-  'post /': 'MainController.enter'
+  'post /': 'MainController.enter',
   // Custom routes here...
 
-
+  'get /register': {
+    view: 'register'
+  }
   // If a request to a URL doesn't match any of the custom routes above,
   // it is matched against Sails route blueprints.  See `config/blueprints.js`
   // for configuration options and examples.
