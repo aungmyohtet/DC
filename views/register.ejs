@@ -1,27 +1,29 @@
 <style>
-   .container {
-     margin: 200px;
-     padding: 200px;
-   }
+#form-container {
+  position: absolute;
+  top: 50px;
+  left: 200px;
+  padding: 50px;
+}
 
-   .form-control {
-     width: 200px;
-   }
+.form-control {
+  width: 200px;
+}
 
-   .header {
-     height: 40px;
-     margin-bottom: 20px;
-     background: cornflowerblue
-   }
+#top-nav-bar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 30px;
+  background: cornflowerblue;
+}
 </style>
-
+<div id="top-nav-bar">
+</div>
 <div class="default-page">
-
-    <div class="header" id="header">
-
-    </div>
    <div class="main container>
-         <div class="container">
+         <div class="container" id="form-container">
 
            <form action="/" method="POST" class="form-horizontal" >
               <div class="form-group">
