@@ -9,6 +9,9 @@ module.exports = {
     subscribe: function (req, res) {
         User.watch(req);
         console.log("user socket subcribed!");
+    },
+
+    register: function(req, res) {
+      
     }
 };
-
