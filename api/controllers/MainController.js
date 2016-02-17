@@ -21,9 +21,12 @@ module.exports = {
         var password = params.password;
         res.locals.layout = null;
         User.findOne({name: params.username, password: params.password}).exec(function(err, user) {
+            console.log("In enter action!");
+            console.log(user.id);
+            console.log("In enter action[end]");
             req.session.user = user;
             req.session.username = name;
-            req.session.user.id = user._id;
+            req.session.user.id = user.id;
             res.view('mainpage2');
         });
         /*req.session.username = name;

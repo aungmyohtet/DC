@@ -10,7 +10,11 @@ module.exports = {
                     socket: socket,
                 });
             }
+            console.log("In addSocket");
+            console.log(session.user.id);
+            console.log("In addSocket method[end]");
         }
+
     },
 
     getSocketByUserId: function (userId) {

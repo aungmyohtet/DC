@@ -19,13 +19,13 @@ module.exports.sockets = {
   onConnect: function(session, socket) {
 
     SocketService.addSocket(session, socket);
-    SocketService.printAllSockets();
+    //SocketService.printAllSockets();
 
   },
 
   // This custom onDisconnect function will be run each time a socket disconnects
   onDisconnect: function(session, socket) {
-    
+
   },
 
 
