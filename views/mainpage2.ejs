@@ -243,13 +243,13 @@
           </li>
           <% for(var i=0; i<User.users.length; i++) {
   					if (User.users[i].id != req.session.user.id) { %>
-  						<li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser(<%=User.users[i].id %>);">
+  						<li data-id="<%=User.users[i].id %>" onclick="selectUser(this)" ng-click="chatWithUser('<%=User.users[i].id %>');">
                 <span class="user-img"></span>
                 <span class="user-title"><%= User.users[i].name %></span>
   						</li>
   						<%  }} %>
 
-              <li ng-repeat="user in users" data-id="{{user.id}}" onclick="selectUser(this)" ng-click="chatWithUser(user.id);">
+              <li ng-repeat="user in users" data-id="{{user.id}}" onclick="selectUser(this)" ng-click="chatWithUser('user.id');">
                 <span class="user-img"></span>
                   <span class="user-title">{{user.name}}</span>
   						</li>
