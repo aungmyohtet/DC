@@ -18,7 +18,15 @@ module.exports = {
     enter: function (req, res) {
         var params = req.params.all();
         var name = params.username;
-        req.session.username = name;
+        var password = params.password;
+        res.locals.layout = null;
+        User.findOne({name: params.username, password: params.password}).exec(function(err, user) {
+            req.session.user = user;
+            req.session.username = name;
+            req.session.user.id = user._id;
+            res.view('mainpage2');
+        });
+        /*req.session.username = name;
         console.log(req.session.username);
         res.locals.layout = null;
         var data = {
@@ -31,7 +39,7 @@ module.exports = {
             console.log("User is " + user.name);
             console.log("User id is "+ user.id);
             res.view('mainpage2');
-        });
+        });*/
 
     },
 
