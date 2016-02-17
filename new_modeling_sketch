@@ -1,0 +1,59 @@
+Modeling
+
+User
+  id,
+  name,
+  password
+  
+Message
+   name
+   message
+   
+PrivateMessage
+   
+   
+   Bootstrapping => Get All Users from DB
+   Register=> Create User=> Successful => Please Login => => pushes to users => broadcast to all existing users
+   Login=>Find user with the name and password => success => display main page => <update online status> and inform to other users.
+   
+   
+   
+   Modeling
+     Models
+	    Message <BrodcastMessage> { name, message}
+		User (name , password)
+	    
+		UserPairKey 
+		  user1id, user2id => pthreadkey
+		  
+		PrivateMessageContent
+		  pthreadkey name, message
+		  pthreadkey name, message
+		  
+	InMemoryModel=> inmemory_user =>  id,name,status;
+	                my_pthreadkeys[otheruserid] = pthreadkey
+					if (null) => Create UserPairKey => (user1id(me), user2id(otherid), pthreadkey
+					                                    update my_pthreadkeys[otheruserid]
+														inform to other user by socket...(userkeypairkeycreate, myid, pthreadkey)
+														other user will update
+														my_pthreadkeys[myid] => pthreadkey;
+														
+														
+		     Select a user
+			        check my_pthreadkeys
+					      if not create one
+						  if one, get all messages pthreadkey........and 
+						                            privateMessages[otherid].push(these data)....
+						  
+						  send message
+						  Create PrivateMessageContent (pthreadkey, name, message)...in database
+						    send other user id....
+							
+														    
+					              
+	
+	
+		
+   
+   
+   
