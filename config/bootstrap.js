@@ -18,7 +18,7 @@ module.exports.bootstrap = function(cb) {
          //if (err) res.json(err);
          User.users = data;
          for (var i = 0; i < data.length; i++) {
-           console.log("In bootstrap user loop:"+ data[i].name);
+           console.log("In bootstrap user loop: user name and user id :"+ data[i].id +" "+data[i].name);
          }
      });
 
