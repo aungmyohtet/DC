@@ -8,11 +8,12 @@
 
 module.exports.models = {
 
-  migrate: 'drop',
+  migrate: 'safe',
 
   // Your app's default connection.
   // i.e. the name of one of your app's connections (see `config/connections.js`)
   //
   // (defaults to localDiskDb)
     connection: 'TeamAppMongo'
+    //connection: 'localDiskDb'
 };

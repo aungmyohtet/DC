@@ -13,7 +13,6 @@ module.exports = {
         } else {
             res.view('welcome');
         }
-
     },
 
     enter: function (req, res) {

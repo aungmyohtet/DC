@@ -14,6 +14,13 @@ module.exports.bootstrap = function(cb) {
   // It's very important to trigger this callack method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   console.log("Bootstrapping!!!!!!!!!!!!!");
-  
+  User.find().exec(function(err, data) {
+         //if (err) res.json(err);
+         User.users = data;
+         for (var i = 0; i < data.length; i++) {
+           console.log("In bootstrap user loop:"+ data[i].name);
+         }
+     });
+
   cb();
 };
