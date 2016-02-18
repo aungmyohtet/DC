@@ -49,14 +49,14 @@ module.exports.connections = {
   // Run:
   // npm install sails-mongo
   //
-  TeamAppMongo: {
+/*  TeamAppMongo: {
     adapter: 'sails-mongo',
     host: 'ds039135.mongolab.com',
     port: 39135,
     user: 'aungmyo',
     password: 'aungmyo',
     database: 'team-app'
-  },
+  },*/
   LocalMongo: {
     adapter: 'sails-mongo',
     host: 'localhost',
